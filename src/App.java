@@ -3,6 +3,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.scene.*;
 import javafx.stage.*;
+import javafx.fxml.*;
 
 public class App extends Application{
     
@@ -12,12 +13,14 @@ public class App extends Application{
 
     @Override
     public void start(Stage stage) throws IOException {
-        Scene scene = new Scene(new Group());
-        stage.setScene(scene);
-        stage.setTitle("Lib Reco Engine");
-        stage.setWidth(600);
-        stage.setHeight(800);
-        stage.setResizable(false);
-        stage.show();
+        try {
+            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainMenu.fxml")));
+            stage.setScene(scene);
+            stage.setTitle("Lib Reco Engine");
+            stage.show();
+            stage.centerOnScreen();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

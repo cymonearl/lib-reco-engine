@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="linear-gradient-background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainMenuController">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: transparent;" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <children>
+            <FlowPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" styleClass="round-cornered-button" stylesheets="@style.css">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@icons/icons8-more-50.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </FlowPane>
+            <Pane prefHeight="50.0" prefWidth="302.0" />
+            <FlowPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0">
+                     <image>
+                        <Image url="@icons/icons8-search-50.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <styleClass>
+                  <String fx:value="round-cornered-button" />
+                  <String fx:value="drop-shadow-text" />
+               </styleClass>
+            </FlowPane>
+            <TextField focusTraversable="false" prefHeight="30.0" prefWidth="350.0" promptText="Search" stylesheets="@style.css">
+               <styleClass>
+                  <String fx:value="round-cornered-button" />
+                  <String fx:value="drop-shadow-text" />
+               </styleClass>
+            </TextField>
+            <FlowPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0">
+                     <image>
+                        <Image url="@../../../../../../../Downloads/icons/icons8-random-50.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <styleClass>
+                  <String fx:value="linear-gradient-background" />
+                  <String fx:value="round-cornered-button" />
+                  <String fx:value="drop-shadow-text" />
+               </styleClass>
+            </FlowPane>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <ScrollPane fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="linear-gradient-background" stylesheets="@style.css" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="cardLayout" alignment="TOP_CENTER" prefHeight="1200.0" prefWidth="780.0" spacing="10.0" styleClass="color-background-skin" stylesheets="@style.css">
+               <children>
+                  <Label stylesheets="@style.css" text="Popular:">
+                     <font>
+                        <Font name="System Bold" size="72.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="drop-shadow-text" />
+                        <String fx:value="set-font-big-bold-pink" />
+                     </styleClass>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+   <left>
+      <VBox prefHeight="750.0" prefWidth="160.0" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>

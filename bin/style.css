@@ -1,0 +1,60 @@
+.linear-gradient-background {
+    -fx-background-color: linear-gradient(to bottom, DE9096, DFD8C7);
+}
+.color-background-pink {
+    -fx-background-color: #DE9096;
+}
+.color-background-skin {
+    -fx-background-color: #DFD8C7;
+}
+.round-cornered-button {
+    -fx-background-color: #DFD8C7;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+.drop-shadow-text {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0, 0, 0);
+}
+.set-font-big-bold-pink {
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 64px;
+    -fx-text-fill: #DE9096;
+}
+.set-font-big-pink {
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 32px;
+    -fx-text-fill: #DE9096;
+}
+.set-font-big-bold {
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 64px;
+    -fx-text-fill: #000000;
+}
+.set-font-bold {
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-font-size: 32px;
+    -fx-text-fill: #000000;
+}
+.set-font {
+    -fx-font-family: "Inter";
+    -fx-font-weight: normal;
+    -fx-font-size: 14px;
+    -fx-text-fill: #000000;
+}
+.set-font-italic {
+    -fx-font-family: "Inter";
+    -fx-font-weight: normal;
+    -fx-font-size: 14px;
+    -fx-text-fill: #000000;
+    -fx-font-style: italic;
+}
+.transparent-background {
+    -fx-background-color: transparent;
+}
