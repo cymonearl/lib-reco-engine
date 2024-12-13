@@ -1,5 +1,5 @@
 .linear-gradient-background {
-    -fx-background-color: linear-gradient(to bottom, DE9096, DFD8C7);
+    -fx-background-color: linear-gradient(to bottom, DE9096 10%, DFD8C7 40%);
 }
 .color-background-pink {
     -fx-background-color: #DE9096;
@@ -24,7 +24,7 @@
     -fx-font-size: 64px;
     -fx-text-fill: #DE9096;
 }
-.set-font-big-pink {
+.set-font-bold-pink {
     -fx-font-family: "Inter";
     -fx-font-weight: bold;
     -fx-font-size: 32px;
@@ -41,6 +41,7 @@
     -fx-font-weight: bold;
     -fx-font-size: 32px;
     -fx-text-fill: #000000;
+    -fx-line-spacing: -15px;
 }
 .set-font {
     -fx-font-family: "Inter";

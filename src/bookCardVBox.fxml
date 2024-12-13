@@ -9,7 +9,7 @@
 
 <HBox fx:id="box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="800.0" spacing="20.0" styleClass="transparent-background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cardController">
    <children>
-      <ImageView fx:id="bookImage" fitHeight="200.0" fitWidth="140.0">
+      <ImageView fx:id="bookImage" fitHeight="200.0" fitWidth="140.0" HBox.hgrow="NEVER">
          <image>
             <Image url="@Books/1/ascendance-of-a-bookworm-part-5-volume-12.jpg" />
          </image>

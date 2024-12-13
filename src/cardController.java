@@ -12,11 +12,12 @@ public class cardController {
     @FXML private Label bookDescription;
 
     public void setData(Book book) {
-        Image image = new Image(getClass().getResourceAsStream(book.getImage()));
+        Image image = new Image(getClass().getResourceAsStream(book.getImagePath()));
         bookImage.setImage(image);
 
         bookTitle.setText(book.getTitle());
         bookGenre.setText(book.getGenre());
+        if (bookDescription != null)
         bookDescription.setText(book.getDescription());
     }
 }
