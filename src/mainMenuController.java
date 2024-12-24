@@ -1,7 +1,4 @@
 import javafx.fxml.*;
-import javafx.scene.*;
-import javafx.stage.*;
-import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 import java.util.*;
@@ -12,14 +9,18 @@ public class mainMenuController {
     
     public void initialize() {
         try {
-            for (Book book : recentlyAdded()) {
+            ArrayList<Book> books = recentlyAdded();
+            final int bookCount = 1;
+            ArrayList<Integer> randomNumbers = getRandomBook(bookCount);
+
+            for (int i = 0; i < bookCount; i++) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("bookCardHBox.fxml"));
                 HBox card = loader.load();
                 cardController controller = loader.getController();
-                controller.setData(book);
+                controller.setData(books.get(randomNumbers.get(i)));
                 cardLayoutHBox.getChildren().add(card);
             }
-
+            
             for (Book book : recentlyAdded()) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("bookCardVBox.fxml"));
                 HBox card = loader.load();
@@ -38,5 +39,19 @@ public class mainMenuController {
         Collections.reverse(books);
         System.out.println(books);
         return books;
+    }
+    
+    private ArrayList<Integer> getRandomBook(int count) {
+        ArrayList<Book> books = recentlyAdded();
+        count = Math.min(count, books.size());
+        
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        Random random = new Random();
+        
+        while (uniqueNumbers.size() < count) {
+            uniqueNumbers.add(random.nextInt(books.size()));
+        }
+        
+        return new ArrayList<>(uniqueNumbers);
     }
 }
