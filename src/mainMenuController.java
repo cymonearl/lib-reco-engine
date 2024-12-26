@@ -26,28 +26,31 @@ public class mainMenuController {
     @FXML
     void createButtonOnAction(ActionEvent event) {
         try {
-            // Load the FXML for the popup
             FXMLLoader loader = new FXMLLoader(getClass().getResource("addBook.fxml"));
             Parent popupRoot = loader.load();
-
-            // Create a new stage for the popup
             Stage popupStage = new Stage();
             popupStage.setTitle("Add Book");
-
-            // Set the scene for the popup
             Scene popupScene = new Scene(popupRoot);
             popupStage.setScene(popupScene);
-
-            // Block interaction with the main window until the popup is closed (modal)
             popupStage.initOwner(((Node) event.getSource()).getScene().getWindow());
             popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
 
-            // Show the popup and wait for it to close
+            // Wait for the popup to close
             popupStage.showAndWait();
+
+            // Refresh the book list after popup closes
+            refreshBookList();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    private void refreshBookList() {
+        cardLayoutVBox.getChildren().clear();
+        cardLayoutHBox.getChildren().clear();
+        initialize(); // Re-run the initialization logic
+    }
+
 
     @FXML
     void deleteButtonOnAction(ActionEvent event) {
