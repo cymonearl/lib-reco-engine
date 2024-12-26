@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -73,34 +72,8 @@
       <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="color-background-skin" stylesheets="@style.css" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
          <content>
             <VBox fx:id="cardLayoutVBox" alignment="TOP_CENTER" prefHeight="1200.0" prefWidth="780.0" spacing="20.0" styleClass="color-background-skin" stylesheets="@style.css">
-               <children>
-                  <Label prefHeight="80.0" prefWidth="256.0" stylesheets="@style.css" text="Popular!">
-                     <font>
-                        <Font name="System Bold" size="72.0" />
-                     </font>
-                     <styleClass>
-                        <String fx:value="drop-shadow-text" />
-                        <String fx:value="set-font-big-bold-pink" />
-                     </styleClass>
-                  </Label>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hvalue="1.0" maxHeight="-Infinity" minViewportHeight="200.0" prefHeight="200.0" prefWidth="200.0" styleClass="color-background-skin" stylesheets="@style.css" vbarPolicy="NEVER" VBox.vgrow="SOMETIMES">
-                     <content>
-                        <HBox fx:id="cardLayoutHBox" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="200.0" styleClass="color-background-skin" stylesheets="@style.css" />
-                     </content>
-                  </ScrollPane>
-                  <Separator prefWidth="200.0" VBox.vgrow="NEVER" />
-                  <Label stylesheets="@style.css" text="Recommended for You:">
-                     <font>
-                        <Font name="System Bold" size="72.0" />
-                     </font>
-                     <styleClass>
-                        <String fx:value="drop-shadow-text" />
-                        <String fx:value="set-font-bold-pink" />
-                     </styleClass>
-                  </Label>
-               </children>
                <padding>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
          </content>
@@ -121,9 +94,9 @@
                   <String fx:value="set-font" />
                </styleClass>
             </Label>
-            <Button mnemonicParsing="false" prefWidth="120.0" styleClass="round-cornered-button" stylesheets="@style.css" text="CREATE" VBox.vgrow="SOMETIMES" />
-            <Button layoutX="30.0" layoutY="60.0" mnemonicParsing="false" prefWidth="120.0" styleClass="round-cornered-button" stylesheets="@style.css" text="UPDATE" />
-            <Button layoutX="30.0" layoutY="105.0" mnemonicParsing="false" prefWidth="120.0" styleClass="round-cornered-button" stylesheets="@style.css" text="DELETE" />
+            <Button fx:id="createButton" mnemonicParsing="false" onAction="#createButtonOnAction" prefWidth="120.0" styleClass="round-cornered-button" stylesheets="@style.css" text="CREATE" VBox.vgrow="SOMETIMES" />
+            <Button fx:id="updateButton" layoutX="30.0" layoutY="60.0" mnemonicParsing="false" onAction="#updateButtonOnAction" prefWidth="120.0" styleClass="round-cornered-button" stylesheets="@style.css" text="UPDATE" />
+            <Button fx:id="deleteButton" layoutX="30.0" layoutY="105.0" mnemonicParsing="false" onAction="#deleteButtonOnAction" prefWidth="120.0" styleClass="round-cornered-button" stylesheets="@style.css" text="DELETE" />
          </children>
          <padding>
             <Insets top="20.0" />

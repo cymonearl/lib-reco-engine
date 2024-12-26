@@ -16,7 +16,7 @@ public class App extends Application{
         try {
             Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mainMenu.fxml")));
             stage.setScene(scene);
-            stage.setTitle("Lib Reco Engine");
+            stage.setTitle("Library");
             stage.show();
             stage.centerOnScreen();
         } catch (Exception e) {

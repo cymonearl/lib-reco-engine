@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="795.0" styleClass="linear-gradient-background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddBookController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="795.0" styleClass="linear-gradient-background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BookPopupController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: transparent;" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
@@ -54,7 +54,7 @@
                   <String fx:value="drop-shadow-text" />
                </styleClass>
             </TextArea>
-            <Button fx:id="addBookButton" layoutX="298.0" layoutY="405.0" mnemonicParsing="false" onAction="#addBookButtonOnAction" prefHeight="31.0" prefWidth="199.0" style="-fx-background-color: pink;" stylesheets="@style.css" text="ADD BOOK">
+            <Button fx:id="actionButton" layoutX="298.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleActionButton" prefHeight="31.0" prefWidth="199.0" style="-fx-background-color: pink;" stylesheets="@style.css" text="ADD BOOK">
                <styleClass>
                   <String fx:value="round-cornered-button" />
                   <String fx:value="color-background-pink" />
