@@ -1,12 +1,65 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.*;
 
 public class mainMenuController {
     @FXML private VBox cardLayoutVBox;
     @FXML private HBox cardLayoutHBox;
-    
+    @FXML private Button createButton;
+    @FXML private Button deleteButton;
+    @FXML private Button updateButton;
+    private Parent root;
+    private Scene scene;
+    private Stage stage;
+
+    // HashMap to store book data (key: book ID, value: book name)
+    private HashMap<String, String> books = new HashMap<>();
+
+    @FXML
+    void createButtonOnAction(ActionEvent event) {
+        try {
+            // Load the FXML for the popup
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("addBook.fxml"));
+            Parent popupRoot = loader.load();
+
+            // Create a new stage for the popup
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Add Book");
+
+            // Set the scene for the popup
+            Scene popupScene = new Scene(popupRoot);
+            popupStage.setScene(popupScene);
+
+            // Block interaction with the main window until the popup is closed (modal)
+            popupStage.initOwner(((Node) event.getSource()).getScene().getWindow());
+            popupStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+
+            // Show the popup and wait for it to close
+            popupStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void deleteButtonOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void updateButtonOnAction(ActionEvent event) {
+
+    }
+
+
     public void initialize() {
         try {
             ArrayList<Book> books = recentlyAdded();
