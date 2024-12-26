@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="795.0" styleClass="linear-gradient-background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainMenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="795.0" styleClass="linear-gradient-background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddBookController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: transparent;" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
@@ -35,26 +35,26 @@
    <center>
       <Pane prefHeight="484.0" prefWidth="707.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="223.0" layoutY="50.0" prefHeight="30.0" prefWidth="350.0" promptText="Book Name" stylesheets="@style.css">
+            <TextField fx:id="bookNameTextField" layoutX="223.0" layoutY="50.0" prefHeight="30.0" prefWidth="350.0" promptText="Book Name" stylesheets="@style.css">
                <styleClass>
                   <String fx:value="round-cornered-button" />
                   <String fx:value="drop-shadow-text" />
                </styleClass>
             </TextField>
-            <TextField layoutX="223.0" layoutY="109.0" prefHeight="30.0" prefWidth="350.0" promptText="Book Genre" stylesheets="@style.css">
+            <TextField fx:id="bookGenreTextField" layoutX="223.0" layoutY="109.0" prefHeight="30.0" prefWidth="350.0" promptText="Book Genre" stylesheets="@style.css">
                <styleClass>
                   <String fx:value="round-cornered-button" />
                   <String fx:value="drop-shadow-text" />
                </styleClass>
             </TextField>
-            <TextArea layoutX="223.0" layoutY="175.0" prefHeight="200.0" prefWidth="350.0" stylesheets="@style.css">
+            <TextArea fx:id="bookDescriptionTextField" layoutX="223.0" layoutY="175.0" prefHeight="200.0" prefWidth="350.0" stylesheets="@style.css">
                <styleClass>
                   <String fx:value="round-cornered-button" />
                   <String fx:value="transparent-background" />
                   <String fx:value="drop-shadow-text" />
                </styleClass>
             </TextArea>
-            <Button fx:id="createButton" layoutX="298.0" layoutY="405.0" mnemonicParsing="false" onAction="#createButtonOnAction" prefHeight="31.0" prefWidth="199.0" style="-fx-background-color: pink;" stylesheets="@style.css" text="ADD BOOK">
+            <Button fx:id="addBookButton" layoutX="298.0" layoutY="405.0" mnemonicParsing="false" onAction="#addBookButtonOnAction" prefHeight="31.0" prefWidth="199.0" style="-fx-background-color: pink;" stylesheets="@style.css" text="ADD BOOK">
                <styleClass>
                   <String fx:value="round-cornered-button" />
                   <String fx:value="color-background-pink" />

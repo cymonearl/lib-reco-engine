@@ -5,19 +5,25 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.nio.file.*;
+import java.util.UUID;
 
 public class AddBookController {
-    @FXML private TextField titleField;
-    @FXML private TextField genreField;
-    @FXML private TextArea descriptionArea;
-
-    private final String CSV_FOLDER_PATH = "data/books"; // Subfolder for CSV files
+    @FXML
+    private TextField bookNameTextField;
 
     @FXML
-    void saveBookOnAction() {
-        String title = titleField.getText().trim();
-        String genre = genreField.getText().trim();
-        String description = descriptionArea.getText().trim();
+    private TextField bookGenreTextField;
+
+    @FXML
+    private TextArea bookDescriptionTextField;
+
+    private final String BOOKS_FOLDER_PATH = "src/Books"; // Main folder for book subfolders
+
+    @FXML
+    void addBookButtonOnAction() {
+        String title = bookNameTextField.getText().trim();
+        String genre = bookGenreTextField.getText().trim();
+        String description = bookDescriptionTextField.getText().trim();
 
         if (title.isEmpty() || genre.isEmpty() || description.isEmpty()) {
             System.out.println("Please fill out all fields!");
@@ -25,20 +31,35 @@ public class AddBookController {
         }
 
         try {
-            // Ensure subfolders exist
-            Files.createDirectories(Paths.get(CSV_FOLDER_PATH));
+            // Create the main books folder if it doesn't exist
+            Files.createDirectories(Paths.get(BOOKS_FOLDER_PATH));
 
-            // Save to CSV
-            String csvFilePath = CSV_FOLDER_PATH + "/books.csv";
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath, true))) {
-                writer.write(String.join(",", title, genre, description));
+            // Generate a unique subfolder for the new book
+            String uniqueFolderName = UUID.randomUUID().toString(); // Use UUID for unique folder names
+            Path bookFolderPath = Paths.get(BOOKS_FOLDER_PATH, uniqueFolderName);
+
+            // Create the subfolder for this book
+            Files.createDirectories(bookFolderPath);
+
+            // Create and write the book's CSV file
+            Path csvFilePath = bookFolderPath.resolve("book.csv");
+            try (BufferedWriter writer = Files.newBufferedWriter(csvFilePath)) {
+                writer.write(title); // First line: title
+                writer.newLine();
+                writer.write(genre); // Second line: genre
+                writer.newLine();
+                writer.write(description); // Third line onwards: description
                 writer.newLine();
             }
 
-            System.out.println("Book saved successfully!");
+            // Create a placeholder for the cover image
+            Path coverImagePath = bookFolderPath.resolve("cover.jpg");
+            Files.createFile(coverImagePath); // This creates an empty file; you can later replace it with an actual image
+
+            System.out.println("Book saved successfully in folder: " + uniqueFolderName);
 
             // Close the popup
-            Stage stage = (Stage) titleField.getScene().getWindow();
+            Stage stage = (Stage) bookNameTextField.getScene().getWindow();
             stage.close();
         } catch (IOException e) {
             e.printStackTrace();
