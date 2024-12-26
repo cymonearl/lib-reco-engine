@@ -83,9 +83,9 @@
                         <String fx:value="set-font-big-bold-pink" />
                      </styleClass>
                   </Label>
-                  <ScrollPane fitToHeight="true" focusTraversable="false" maxHeight="-Infinity" minViewportHeight="200.0" prefHeight="200.0" prefWidth="200.0" styleClass="color-background-skin" stylesheets="@style.css" vbarPolicy="NEVER">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hvalue="1.0" maxHeight="-Infinity" minViewportHeight="200.0" prefHeight="200.0" prefWidth="200.0" styleClass="color-background-skin" stylesheets="@style.css" vbarPolicy="NEVER" VBox.vgrow="SOMETIMES">
                      <content>
-                        <HBox fx:id="cardLayoutHBox" minHeight="-Infinity" prefHeight="200.0" prefWidth="1000.0" styleClass="color-background-skin" stylesheets="@style.css" />
+                        <HBox fx:id="cardLayoutHBox" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="200.0" styleClass="color-background-skin" stylesheets="@style.css" />
                      </content>
                   </ScrollPane>
                   <Separator prefWidth="200.0" VBox.vgrow="NEVER" />

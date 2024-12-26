@@ -93,7 +93,6 @@ public class mainMenuController {
         ArrayList<Book> books;
         books = new Book().getBooks();
         Collections.reverse(books);
-        System.out.println(books);
         return books;
     }
     

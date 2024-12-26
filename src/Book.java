@@ -56,7 +56,6 @@ public class Book {
                 File[] csvFiles = subfolder.listFiles((dir, name) -> name.toLowerCase().endsWith(".csv"));
                 File coverImage = new File(subfolder, "cover.jpg"); // Assume the cover image is named "cover.jpg"
                 Path coverImagePath = coverImage.toPath();
-                System.out.println(coverImagePath.subpath(1, coverImagePath.getNameCount()).toString());
 
                 if (csvFiles == null || csvFiles.length == 0) {
                     System.out.println("No CSV file found in folder: " + subfolder.getName());
@@ -107,16 +106,5 @@ public class Book {
         }
 
         return books;
-    }
-
-    public static void main(String[] args) {
-        Book bookManager = new Book();
-        ArrayList<Book> books = bookManager.getBooks();
-
-        // Print all books loaded from the Books folder
-        for (Book book : books) {
-            System.out.println(book);
-            System.out.println("-------------------------------");
-        }
     }
 }
