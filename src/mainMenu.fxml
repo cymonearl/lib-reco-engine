@@ -48,20 +48,6 @@
                   <String fx:value="drop-shadow-text" />
                </styleClass>
             </TextField>
-            <FlowPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" stylesheets="@style.css">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0">
-                     <image>
-                        <Image url="@../../../../../../../Downloads/icons/icons8-random-50.png" />
-                     </image>
-                  </ImageView>
-               </children>
-               <styleClass>
-                  <String fx:value="linear-gradient-background" />
-                  <String fx:value="round-cornered-button" />
-                  <String fx:value="drop-shadow-text" />
-               </styleClass>
-            </FlowPane>
          </children>
          <padding>
             <Insets left="10.0" />
