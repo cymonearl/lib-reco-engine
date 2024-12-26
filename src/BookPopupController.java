@@ -1,7 +1,9 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -22,7 +24,8 @@ public class BookPopupController {
     private Button actionButton; // The button used for both adding and updating
 
     private String BOOKS_FOLDER_PATH = "src/Books"; // Main folder for book subfolders
-    private Book currentBook = null; // This will be `null` for adding, set to existing book for updating 
+    private Book currentBook = null; // This will be `null` for adding, set to existing book for updating
+    private Path imagePath;
 
     // Flag to indicate whether the popup is for "Add" or "Update"
     private boolean isUpdate = false;
@@ -49,6 +52,18 @@ public class BookPopupController {
             // Add mode
             isUpdate = false;
             actionButton.setText("ADD BOOK");
+        }
+    }
+
+    public void addImage(ActionEvent event) {
+        FileChooser chooseFile = new FileChooser();
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", "*.jpeg");
+        chooseFile.getExtensionFilters().add(imageFilter);
+        chooseFile.setTitle("Select Cover Image");
+        File selectedImage = chooseFile.showOpenDialog(new Stage());
+        if (selectedImage != null) {
+            imagePath = selectedImage.toPath();
+            System.out.println(imagePath);
         }
     }
 
@@ -105,6 +120,18 @@ public class BookPopupController {
         currentBook.setTitle(title);
         currentBook.setGenre(genre);
         currentBook.setDescription(description);
+
+        // Handle the cover image
+        if (imagePath != null) {
+            Path coverImagePath = bookFolderPath.resolve("cover.jpg");
+            try {
+                Files.copy(imagePath, coverImagePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                System.err.println("Error copying image: " + e.getMessage());
+                // Handle error appropriately, perhaps re-throw or show an error message to the user
+                throw e;
+            }
+        }
     }
 
     private void addNewBookFiles(String title, String genre, String description) throws IOException {
@@ -129,7 +156,19 @@ public class BookPopupController {
         }
 
         // Create a placeholder for the cover image
-        Path coverImagePath = bookFolderPath.resolve("cover.jpg");
-        Files.createFile(coverImagePath);
+        if (imagePath != null) {
+            Path coverImagePath = bookFolderPath.resolve("cover.jpg");
+            try {
+                Files.copy(imagePath, coverImagePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                System.err.println("Error copying image: " + e.getMessage());
+                // Handle error appropriately
+                throw e; // Or handle it in another way that's suitable for your application
+            }
+        } else {
+            // If no image is provided, create an empty placeholder file
+            Path coverImagePath = bookFolderPath.resolve("cover.jpg");
+            Files.createFile(coverImagePath);
+        }
     }
 }

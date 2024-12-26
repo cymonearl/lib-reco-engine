@@ -60,6 +60,12 @@
                   <String fx:value="color-background-pink" />
                </styleClass>
             </Button>
+            <Button layoutX="298.0" layoutY="-3.0" mnemonicParsing="false" onAction="#addImage" prefHeight="31.0" prefWidth="199.0" style="-fx-background-color: pink;" stylesheets="@style.css" text="ADD IMAGE">
+               <styleClass>
+                  <String fx:value="round-cornered-button" />
+                  <String fx:value="color-background-pink" />
+               </styleClass>
+            </Button>
          </children>
       </Pane>
    </center>

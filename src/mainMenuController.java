@@ -51,6 +51,7 @@ public class mainMenuController {
             // Wait for the popup to close
             popupStage.showAndWait();
 
+            
             // Refresh the book list after popup closes
             refreshBookList();
         } catch (IOException e) {

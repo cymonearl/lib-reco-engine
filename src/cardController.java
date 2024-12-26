@@ -1,3 +1,5 @@
+import java.io.InputStream;
+
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -14,8 +16,20 @@ public class cardController {
     public void setData(Book book) {
         this.book = book;
 
-        Image image = new Image(getClass().getResourceAsStream(book.getImagePath()));
-        bookImage.setImage(image);
+
+        try {
+            // Load the image using getResourceAsStream
+            InputStream is = getClass().getResourceAsStream(book.getImagePath());
+            if (is != null) {
+                Image image = new Image(is);
+                bookImage.setImage(image);
+            } else {
+                System.err.println("Image not found: " + book.getImagePath());
+            }
+        } catch (Exception e) {
+            System.err.println("Error loading image: " + book.getImagePath());
+            e.printStackTrace();
+        }
 
         bookTitle.setText(book.getTitle());
         bookGenre.setText(book.getGenre());
