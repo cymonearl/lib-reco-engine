@@ -4,6 +4,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -17,10 +19,12 @@ public class mainMenuController {
     @FXML private Button createButton;
     @FXML private Button deleteButton;
     @FXML private Button updateButton;
+    @FXML private TextField searchBar;
 
     // HashMap to store book data (key: book ID, value: book object)
     private HashMap<String, Book> books = new HashMap<>();
     private HBox selectedBox = null;
+    private BookSearch bookSearch = new BookSearch();
 
     /**
      * Handles the creation of a new book by opening the popup in "Add Mode".
@@ -136,26 +140,42 @@ public class mainMenuController {
      * Initializes the main view and loads the books.
      */
     public void initialize() {
-        populateBooks();
+        populateBooks(null);
     }
 
     /**
      * Populates the book list in the UI by loading each book into a card.
      */
-    private void populateBooks() {
+    private void populateBooks(List<Book> books) {
         try {
-            for (Book book : recentlyAdded()) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("bookCardVBox.fxml"));
-                HBox card = loader.load();
-                cardController controller = loader.getController();
-                controller.setData(book);
-                card.setUserData(controller); // Attach the controller to the card for later reference
-
-                // Add click event to select the card
-                card.setOnMouseClicked(this::selectBook);
-
-                cardLayoutVBox.getChildren().add(card);
+            if (books == null) {
+                for (Book book : recentlyAdded()) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("bookCardVBox.fxml"));
+                    HBox card = loader.load();
+                    cardController controller = loader.getController();
+                    controller.setData(book);
+                    card.setUserData(controller); // Attach the controller to the card for later reference
+    
+                    // Add click event to select the card
+                    card.setOnMouseClicked(this::selectBook);
+    
+                    cardLayoutVBox.getChildren().add(card);
+                }
+            } else {
+                for (Book book : books) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("bookCardVBox.fxml"));
+                    HBox card = loader.load();
+                    cardController controller = loader.getController();
+                    controller.setData(book);
+                    card.setUserData(controller); // Attach the controller to the card for later reference
+    
+                    // Add click event to select the card
+                    card.setOnMouseClicked(this::selectBook);
+    
+                    cardLayoutVBox.getChildren().add(card);
+                }
             }
+
         } catch (Exception error) {
             error.printStackTrace();
         }
@@ -184,5 +204,12 @@ public class mainMenuController {
         // Select new box
         selectedBox = clickedBox;
         selectedBox.setStyle("-fx-background-color: lightblue;");
+    }
+
+    public void searchBooks(KeyEvent event) {
+        String query = searchBar.getText(); // Get the updated text in the search bar
+        List<Book> searchResults = bookSearch.search(query); // Perform the search
+        cardLayoutVBox.getChildren().clear();
+        populateBooks(searchResults); // Dynamically update the UI with search results
     }
 }
