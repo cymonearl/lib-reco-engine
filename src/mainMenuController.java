@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -107,7 +108,7 @@ public class mainMenuController {
      */
     private void refreshBookList() {
         cardLayoutVBox.getChildren().clear();
-        initialize(); // Re-run the initialization logic
+        populateBooks(null);; // Re-run the initialization logic
     }
 
     /**
@@ -120,13 +121,49 @@ public class mainMenuController {
             cardController controller = getCardController(selectedBox);
             if (controller != null) {
                 Book selectedBook = controller.getBook();
-                books.remove(selectedBook.getTitle()); // Remove from the HashMap using the book ID
-                cardLayoutVBox.getChildren().remove(selectedBox); // Remove the card from the UI
-                selectedBox = null; // Clear the selection
+                String bookTitle = selectedBook.getTitle();
+    
+                // Remove the book from the HashMap
+                books.remove(bookTitle);
+    
+                // Remove the card from the UI
+                cardLayoutVBox.getChildren().remove(selectedBox);
+    
+                // Construct the folder path for the book images to be deleted
+                String folderPath = "src/Books/" + selectedBook.getId(); // Assuming getFolderName() returns the folder name
+                File folder = new File(folderPath);
+    
+                // Delete the folder and its contents
+                if (deleteFolder(folder)) {
+                    System.out.println("Deleted folder: " + folderPath);
+                } else {
+                    System.err.println("Failed to delete folder: " + folderPath);
+                }
+    
+                // Clear the selection
+                selectedBox = null;
             }
         } else {
             System.out.println("No book selected to delete.");
         }
+    }
+    
+    /**
+     * Deletes a folder and its contents.
+     */
+    private boolean deleteFolder(File folder) {
+        if (folder.isDirectory()) {
+            // List all files and directories in the folder
+            File[] files = folder.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    // Recursively delete each file or directory
+                    deleteFolder(file);
+                }
+            }
+        }
+        // Finally delete the empty folder or file
+        return folder.delete();
     }
 
     /**
@@ -156,7 +193,7 @@ public class mainMenuController {
                     cardController controller = loader.getController();
                     controller.setData(book);
                     card.setUserData(controller); // Attach the controller to the card for later reference
-    
+                    
                     // Add click event to select the card
                     card.setOnMouseClicked(this::selectBook);
     
@@ -187,6 +224,7 @@ public class mainMenuController {
      */
     private ArrayList<Book> recentlyAdded() {
         ArrayList<Book> bookList = new Book().getBooks(); // Simulated method from `Book` class
+        System.out.println("recentlyAdded called");
         Collections.reverse(bookList);
         return bookList;
     }
@@ -209,6 +247,12 @@ public class mainMenuController {
 
     public void searchBooks(KeyEvent event) {
         String query = searchBar.getText(); // Get the updated text in the search bar
+        if (query == null || query.trim().isEmpty()) {
+            cardLayoutVBox.getChildren().clear();
+            populateBooks(null); // Re-run the initialization logic
+            return;
+        }
+        
         List<Book> searchResults = bookSearch.search(query); // Perform the search
         cardLayoutVBox.getChildren().clear();
         populateBooks(searchResults); // Dynamically update the UI with search results

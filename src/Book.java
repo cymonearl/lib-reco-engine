@@ -60,6 +60,7 @@ public class Book {
                 File[] csvFiles = subfolder.listFiles((dir, name) -> name.toLowerCase().endsWith(".csv"));
                 File coverImage = new File(subfolder, "cover.jpg"); // Assume the cover image is named "cover.jpg"
                 Path coverImagePath = coverImage.toPath();
+                System.out.println(coverImagePath);
     
                 if (csvFiles == null || csvFiles.length == 0) {
                     System.out.println("No CSV file found in folder: " + subfolder.getName());

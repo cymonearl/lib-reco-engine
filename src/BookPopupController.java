@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.nio.file.*;
+import java.util.List;
+import java.util.Objects;
 
 public class BookPopupController {
 
@@ -138,9 +140,33 @@ public class BookPopupController {
         Path booksFolderPath = Paths.get(BOOKS_FOLDER_PATH);
         Files.createDirectories(booksFolderPath);
 
-        // Determine the next folder name
-        String nextFolderName = String.valueOf(Files.list(booksFolderPath).count() + 1);
+        // Get the list of existing folder names
+        List<Integer> existingFolderNumbers = Files.list(booksFolderPath)
+                .filter(Files::isDirectory) // Only consider directories
+                .map(path -> path.getFileName().toString()) // Get the folder names as strings
+                .map(name -> {
+                    try {
+                        return Integer.parseInt(name); // Parse folder names to integers
+                    } catch (NumberFormatException e) {
+                        return null; // Ignore non-integer folder names
+                    }
+                })
+                .filter(Objects::nonNull) // Remove nulls (non-integer folder names)
+                .sorted() // Sort in ascending order
+                .toList();
 
+        // Determine the next available folder number
+        int nextFolderNumber = 1;
+        for (int folderNumber : existingFolderNumbers) {
+            if (folderNumber == nextFolderNumber) {
+                nextFolderNumber++; // Move to the next number in sequence
+            } else {
+                break; // Found a gap in the sequence
+            }
+        }
+
+        // Create the folder for the new book
+        String nextFolderName = String.valueOf(nextFolderNumber);
         Path bookFolderPath = booksFolderPath.resolve(nextFolderName);
         Files.createDirectories(bookFolderPath);
 
@@ -156,8 +182,8 @@ public class BookPopupController {
         }
 
         // Create a placeholder for the cover image
+        Path coverImagePath = bookFolderPath.resolve("cover.jpg");
         if (imagePath != null) {
-            Path coverImagePath = bookFolderPath.resolve("cover.jpg");
             try {
                 Files.copy(imagePath, coverImagePath, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
@@ -167,7 +193,6 @@ public class BookPopupController {
             }
         } else {
             // If no image is provided, create an empty placeholder file
-            Path coverImagePath = bookFolderPath.resolve("cover.jpg");
             Files.createFile(coverImagePath);
         }
     }
